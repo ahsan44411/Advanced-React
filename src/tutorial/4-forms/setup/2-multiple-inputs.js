@@ -9,6 +9,8 @@ import React, { useState } from 'react';
 const ControlledInputs = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
+  const [age, setAge] = useState('');
+  const [person, setPerson] = useState({ firstName: "", email: "", age: "" });
   const [people, setPeople] = useState([]);
 
   const handleSubmit = (e) => {
@@ -25,6 +27,13 @@ const ControlledInputs = () => {
       console.log('empty values');
     }
   };
+
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setPerson({ ...person, [name]: value });
+  };
+
   return (
     <>
       <article>
@@ -35,8 +44,8 @@ const ControlledInputs = () => {
               type='text'
               id='firstName'
               name='firstName'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={person.firstName}
+              onChange={handleChange}
             />
           </div>
           <div className='form-control'>
@@ -45,11 +54,21 @@ const ControlledInputs = () => {
               type='email'
               id='email'
               name='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={person.email}
+              onChange={handleChange}
             />
           </div>
-          <button type='submit'>add person</button>
+          <div className='form-control'>
+            <label htmlFor='email'>Email : </label>
+            <input
+              type='text'
+              id='age'
+              name='age'
+              value={person.age}
+              onChange={handleChange}
+            />
+          </div>
+          <button type='submit' onClick={handleSubmit}>add person</button>
         </form>
         {people.map((person, index) => {
           const { id, firstName, email } = person;

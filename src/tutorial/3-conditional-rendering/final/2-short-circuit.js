@@ -21,10 +21,10 @@ const ShortCircuit = () => {
       {isError ? (
         <p>there is an error...</p>
       ) : (
-        <div>
-          <h2>there is no error</h2>
-        </div>
-      )}
+          <div>
+            <h2>there is no error</h2>
+          </div>
+        )}
     </>
   );
 };
